@@ -1,0 +1,28 @@
+{
+  "name": "custom-format-input-vue",
+  "version": "1.0.0",
+  "description": "custom format input vue",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/syahrilanwar/custom-format-input-vue.git"
+  },
+  "keywords": [
+    "custom",
+    "format",
+    "input",
+    "vue"
+  ],
+  "author": "Syahril Anwar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/syahrilanwar/custom-format-input-vue/issues"
+  },
+  "homepage": "https://github.com/syahrilanwar/custom-format-input-vue#readme",
+  "dependencies": {
+    "vue": "^2.7.16"
+  }
+}
