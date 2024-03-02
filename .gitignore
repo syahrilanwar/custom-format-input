@@ -2,7 +2,7 @@
 node_modules
 /dist
 /public
-/src/Index.uve
+/src/Index.vue
 /src/main.js
 
 
