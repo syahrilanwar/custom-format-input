@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import CustomeFormatInputVue from "./CustomeFormatInput.vue";
+import CustomeFormatInputVue from "./CustomFormatInput.vue";
 export default {
   name: "App",
   components: {
