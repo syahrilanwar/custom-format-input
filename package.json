@@ -2,7 +2,7 @@
   "name": "custom-format-input-vue",
   "version": "1.0.0",
   "description": "custom format input vue",
-  "main": "index.js",
+  "main": "src/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/syahrilanwar/custom-format-input-vue.git"
