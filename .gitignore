@@ -2,6 +2,8 @@
 node_modules
 /dist
 /public
+/src/Index.uve
+/src/main.js
 
 
 # local env files
