@@ -30,7 +30,7 @@
 
    ```html
    <template>
-      <custom-format-input
+      <custom-format-input-vue
          :value="value"
          :options="options"
          @update-value="updateValue"
