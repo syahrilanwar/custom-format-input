@@ -26,7 +26,9 @@ export default {
       this.parseValue.push(option);
     },
     createValue(option) {
+      this.newValue = null;
       this.parseValue.push(option);
+      this.filteredOptions = this.options;
     },
     handleClickOutside(event) {
       if (
@@ -63,7 +65,7 @@ export default {
 
 .cfi-input {
   border: 0.06rem solid #ccc;
-  padding: 0.25rem 0.25rem 0.25rem 0.25rem;
+  padding: 0.225rem 0.25rem 0.225rem 0.25rem;
   border-radius: 0.35rem;
   display: flex;
   width: auto;
@@ -95,7 +97,7 @@ export default {
   border: 0.06rem solid #c7d2fe;
   border-radius: 0.25rem;
   font-size: 0.75rem;
-  padding: 0.35rem 0.3rem 0.35rem 0.5rem;
+  padding: 0.1rem 0.3rem 0.1rem 0.5rem;
 }
 
 .cfi-input-container-data div {
@@ -181,14 +183,14 @@ export default {
 <template>
   <div class="cfi" ref="customFormatInput">
     <div class="cfi-input">
-      <div class="cfi-input-container" @click="$refs.newValue.focus();">
+      <div class="cfi-input-container" @click.prevent="$refs.newValue.focus()">
         <div
           class="cfi-input-container-data"
           v-for="(item, index) in parseValue"
           :key="index"
         >
           <div>{{ item }}</div>
-          <button @click="deleteOption(index)">
+          <button @click.prevent="deleteOption(index)">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="icon icon-tabler icon-tabler-xbox-x"
@@ -215,11 +217,17 @@ export default {
           ref="newValue"
           @focus="showOption = true"
           v-model="newValue"
-          @input="inputEvent()"
-          @keyup.enter="createValue(newValue)"
+          @input="
+            inputEvent();
+            showOption = true;
+          "
+          @keyup.prevent.enter="createValue(newValue)"
         />
       </div>
-      <div @click="showOption = !showOption" class="cfi-input-btn-option">
+      <div
+        @click.prevent="showOption = !showOption"
+        class="cfi-input-btn-option"
+      >
         <svg
           v-if="!showOption"
           xmlns="http://www.w3.org/2000/svg"
@@ -255,13 +263,22 @@ export default {
     <div class="cfi-input-option-container" v-if="showOption">
       <div class="cfi-input-option-container-data">
         <div
-          @click="addValue(option)"
+          @click.prevent="
+            addValue(option);
+            $refs.newValue.focus();
+          "
           v-for="(option, idx) in filteredOptions"
           :key="idx"
         >
           {{ option }}
         </div>
-        <div v-if="filteredOptions.length == 0">
+        <div
+          @click.prevent="
+            createValue(newValue);
+            $refs.newValue.focus();
+          "
+          v-if="filteredOptions.length == 0"
+        >
           {{ newValue }}
         </div>
       </div>
