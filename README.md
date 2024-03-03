@@ -16,8 +16,8 @@
 
 #### Usage
 
-1. **Import UI Kit:**
-   Import the UI Kit into your project.
+1. **Import Custom Format Input Vue:**
+   Import the Custom Format Input Vue into your project.
 
    ```javascript
     import Vue from "vue";
