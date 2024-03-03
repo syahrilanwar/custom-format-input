@@ -26,9 +26,11 @@ export default {
       this.parseValue.push(option);
     },
     createValue(option) {
-      this.newValue = null;
-      this.parseValue.push(option);
-      this.filteredOptions = this.options;
+      if (option) {
+        this.newValue = null;
+        this.parseValue.push(option);
+        this.filteredOptions = this.options;
+      }
     },
     handleClickOutside(event) {
       if (
@@ -96,7 +98,7 @@ export default {
   background-color: #e0e7ff;
   border: 0.06rem solid #c7d2fe;
   border-radius: 0.25rem;
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   padding: 0.1rem 0.3rem 0.1rem 0.5rem;
 }
 
