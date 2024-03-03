@@ -192,7 +192,7 @@ export default {
           :key="index"
         >
           <div>{{ item }}</div>
-          <button @click.prevent="deleteOption(index)">
+          <button type="button" @click.prevent="deleteOption(index)">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="icon icon-tabler icon-tabler-xbox-x"
