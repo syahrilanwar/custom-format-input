@@ -19,7 +19,7 @@
     "url": "https://github.com/syahrilanwar/custom-format-input-vue/issues"
   },
   "homepage": "https://github.com/syahrilanwar/custom-format-input-vue#readme",
-  "private": true,
+  "private": false,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --target lib --name custom-format-input-vue src/index.js",
