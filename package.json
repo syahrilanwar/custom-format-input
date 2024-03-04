@@ -1,6 +1,6 @@
 {
   "name": "custom-format-input-vue",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "custom format input vue",
   "main": "src/index.js",
   "repository": {
