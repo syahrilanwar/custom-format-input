@@ -71,6 +71,23 @@ export default {
         }
       }
     },
+    handleDragStart(index) {
+      event.dataTransfer.setData("text/plain", index.toString());
+      event.dataTransfer.effectAllowed = "move";
+    },
+    handleDragEnd() {
+    },
+    handleDrop(targetIndex) {
+      const draggedIndex = parseInt(
+        event.dataTransfer.getData("text/plain"),
+        10
+      );
+      const draggedItem = this.parseValue[draggedIndex];
+
+      // Perform swap
+      this.$set(this.parseValue, draggedIndex, this.parseValue[targetIndex]);
+      this.$set(this.parseValue, targetIndex, draggedItem);
+    },
   },
 };
 </script>
@@ -127,6 +144,7 @@ export default {
   border: 0.06rem solid #c7d2fe;
   border-radius: 0.25rem;
   font-size: 0.65rem;
+  cursor: pointer;
   padding: 0.1rem 0.3rem 0.1rem 0.5rem;
 }
 
@@ -222,6 +240,11 @@ export default {
           class="cfi-input-container-data"
           v-for="(item, index) in parseValue"
           :key="index"
+          :draggable="!disabled"
+          @dragstart="handleDragStart(index)"
+          @dragend="handleDragEnd"
+          @dragover.prevent
+          @drop="handleDrop(index)"
         >
           <div>{{ item }}</div>
           <button
