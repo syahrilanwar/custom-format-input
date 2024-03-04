@@ -1,6 +1,6 @@
-# Contributing to [Custom Format Input Vue]
+# Contributing to Custom Format Input Vue
 
-Welcome to [Custom Format Input Vue]! I'm appreciate your interest in contributing.
+Welcome to Custom Format Input Vue! I'm appreciate your interest in contributing.
 
 ## How to Contribute
 
