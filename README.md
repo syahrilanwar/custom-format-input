@@ -31,6 +31,7 @@
    ```html
    <template>
       <custom-format-input-vue
+         :disabled="disabled"
          :value="value"
          :options="options"
          @update-value="updateValue"
@@ -41,6 +42,7 @@
     export default {
       data() {
         return {
+          disabled: false,
           value: [],
           options: [
             "Option 1",

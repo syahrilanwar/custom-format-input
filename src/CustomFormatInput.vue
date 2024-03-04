@@ -3,6 +3,10 @@ export default {
   props: {
     value: Array,
     options: Array,
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
@@ -20,39 +24,51 @@ export default {
   },
   methods: {
     deleteOption(index) {
-      this.parseValue.splice(index, 1);
+      if (!this.disabled) {
+        this.parseValue.splice(index, 1);
+      }
     },
     addValue(option) {
-      this.parseValue.push(option);
+      if (!this.disabled) {
+        this.parseValue.push(option);
+      }
     },
     createValue(option) {
-      if (option) {
-        this.newValue = null;
-        this.parseValue.push(option);
-        this.filteredOptions = this.options;
+      if (!this.disabled) {
+        if (option) {
+          this.newValue = null;
+          this.parseValue.push(option);
+          this.filteredOptions = this.options;
+        }
       }
     },
     handleClickOutside(event) {
-      if (
-        this.$refs.customFormatInput &&
-        !this.$refs.customFormatInput.contains(event.target)
-      ) {
-        this.showOption = false;
+      if (!this.disabled) {
+        if (
+          this.$refs.customFormatInput &&
+          !this.$refs.customFormatInput.contains(event.target)
+        ) {
+          this.showOption = false;
+        }
       }
     },
     beforeDestroy() {
-      document.removeEventListener("click", this.handleClickOutside);
+      if (!this.disabled) {
+        document.removeEventListener("click", this.handleClickOutside);
+      }
     },
     inputEvent() {
-      const inputElement = this.$refs.newValue;
-      inputElement.style.width = inputElement.scrollWidth + "px";
-      // filter
-      if (this.newValue) {
-        this.filteredOptions = this.options.filter((option) =>
-          option.toLowerCase().includes(this.newValue.toLowerCase())
-        );
-      } else {
-        this.filteredOptions = this.options;
+      if (!this.disabled) {
+        const inputElement = this.$refs.newValue;
+        inputElement.style.width = inputElement.scrollWidth + "px";
+        // filter
+        if (this.newValue) {
+          this.filteredOptions = this.options.filter((option) =>
+            option.toLowerCase().includes(this.newValue.toLowerCase())
+          );
+        } else {
+          this.filteredOptions = this.options;
+        }
       }
     },
   },
@@ -73,6 +89,11 @@ export default {
   width: auto;
 }
 
+.cfi-input .disabled {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
 .cfi-input-container {
   width: 100%;
   display: flex;
@@ -91,6 +112,12 @@ export default {
 .cfi-input-container input[type="text"] {
   border: none;
   outline: none;
+}
+
+.cfi-input-container.disabled input[type="text"] {
+  background-color: transparent;
+  color: #777;
+  cursor: not-allowed;
 }
 
 .cfi-input-container-data {
@@ -184,8 +211,12 @@ export default {
 </style>
 <template>
   <div class="cfi" ref="customFormatInput">
-    <div class="cfi-input">
-      <div class="cfi-input-container" @click.prevent="$refs.newValue.focus()">
+    <div class="cfi-input" :class="{ disabled: disabled }">
+      <div
+        class="cfi-input-container"
+        :class="{ disabled: disabled }"
+        @click.prevent="$refs.newValue.focus()"
+      >
         <div
           class="cfi-input-container-data"
           v-for="(item, index) in parseValue"
@@ -193,6 +224,7 @@ export default {
         >
           <div>{{ item }}</div>
           <button
+            :disabled="disabled"
             type="button"
             @click.prevent="
               deleteOption(index);
@@ -224,6 +256,7 @@ export default {
         <input
           type="text"
           ref="newValue"
+          :disabled="disabled"
           @focus="showOption = true"
           v-model="newValue"
           @input="
@@ -234,7 +267,7 @@ export default {
         />
       </div>
       <div
-        @click.prevent="showOption = !showOption"
+        @click.prevent="showOption = !disabled ? !showOption : false"
         class="cfi-input-btn-option"
       >
         <svg
