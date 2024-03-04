@@ -1,4 +1,4 @@
-MIT License
+ISC License
 
 Copyright (c) [year] [copyright holder]
 
