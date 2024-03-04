@@ -66,7 +66,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
 
 ### License
 
-Licensed under [XYZ license]. See [LICENSE.md](LICENSE.md) for more details.
+Licensed under [ISCa license]. See [LICENSE.md](LICENSE.md) for more details.
 
 ### Contact
 
