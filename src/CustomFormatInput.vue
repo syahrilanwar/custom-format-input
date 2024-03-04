@@ -79,6 +79,7 @@ export default {
   position: relative;
   width: 100%;
   min-width: 200px;
+  line-height: normal;
 }
 
 .cfi-input {
