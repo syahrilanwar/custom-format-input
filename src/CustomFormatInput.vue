@@ -39,6 +39,8 @@ export default {
           this.newValue = null;
           this.parseValue.push(option);
           this.filteredOptions = this.options;
+          const inputElement = this.$refs.newValue;
+          inputElement.style.width = "1%";
         }
       }
     },
@@ -76,6 +78,7 @@ export default {
       event.dataTransfer.effectAllowed = "move";
     },
     handleDragEnd() {
+      this.$refs.newValue.focus();
     },
     handleDrop(targetIndex) {
       const draggedIndex = parseInt(
@@ -84,7 +87,6 @@ export default {
       );
       const draggedItem = this.parseValue[draggedIndex];
 
-      // Perform swap
       this.$set(this.parseValue, draggedIndex, this.parseValue[targetIndex]);
       this.$set(this.parseValue, targetIndex, draggedItem);
     },
@@ -123,7 +125,7 @@ export default {
 .cfi-input-container input {
   border: none;
   outline: none;
-  width: auto;
+  width: 1%;
   max-width: 100%;
 }
 
@@ -144,8 +146,12 @@ export default {
   border: 0.06rem solid #c7d2fe;
   border-radius: 0.25rem;
   font-size: 0.65rem;
-  cursor: pointer;
+  cursor: grab;
   padding: 0.1rem 0.3rem 0.1rem 0.5rem;
+}
+
+.cfi-input-container-data:active {
+  cursor: grabbing;
 }
 
 .cfi-input-container-data div {
@@ -253,6 +259,7 @@ export default {
             @click.prevent="
               deleteOption(index);
               $event.stopPropagation();
+              $refs.newValue.focus();
             "
             @mousedown.stop
           >
