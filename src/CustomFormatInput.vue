@@ -178,7 +178,7 @@ export default {
   align-items: center;
   width: fit-content;
   font-size: 0.75rem;
-  padding: 0.15rem 0.6rem 0.15rem 0.6rem;
+  padding: 0.15rem 0.15rem 0.15rem 0.15rem;
   cursor: pointer;
 }
 
